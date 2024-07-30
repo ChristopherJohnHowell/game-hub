@@ -37,7 +37,7 @@ const PlatformIconList = ({ platforms }: Props) => {
         {platforms.map((platform) => (
           // This line has an error if you don't say: "iconMap: { [key: string]: IconType }"
           <Icon
-            key={platform.slug}
+            key={platform.id}
             as={iconMap[platform.slug]}
             color="gray.500"
           />
