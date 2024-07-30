@@ -5,9 +5,10 @@ import GameGenreSkeleton from "./GameGenreSkeleton";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, error, isLoading } = useGenres();
   if (isLoading) return <GameGenreSkeleton />;
   if (error) return <Text>Oops! {error}</Text>;
@@ -25,6 +26,9 @@ const GenreList = ({ onSelectGenre }: Props) => {
                   src={getCroppedImageUrl(genre.image_background)}
                 ></Image>
                 <Button
+                  fontWeight={
+                    genre.id === selectedGenre?.id ? "bold" : "normal"
+                  }
                   onClick={() => onSelectGenre(genre)}
                   fontSize="md"
                   variant={"link"}
