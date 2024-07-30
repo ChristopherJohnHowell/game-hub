@@ -24,7 +24,7 @@ const GenreList = ({ onSelectGenre, selectedGenre }: Props) => {
                   boxSize={"32px"}
                   borderRadius={8}
                   src={getCroppedImageUrl(genre.image_background)}
-                ></Image>
+                />
                 <Button
                   fontWeight={
                     genre.id === selectedGenre?.id ? "bold" : "normal"
