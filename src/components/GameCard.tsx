@@ -22,6 +22,7 @@ const GameCard = ({ game }: Props) => {
         </HStack>
         <Heading fontSize={"xl"}>
           {game.name}
+          {/* Looks Better without emojis */}
           {/* <Emoji rating={game.rating_top} /> */}
         </Heading>
       </CardBody>
