@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
@@ -6,7 +6,8 @@ import { useState } from "react";
 import { Genre } from "./hooks/useGenres";
 import PlatformSelector from "./components/PlatformSelector";
 import { Platform } from "./hooks/useGames";
-import OrderBySelector, { SortOrder } from "./components/SortSelector";
+import SortSelector, { SortOrder } from "./components/SortSelector";
+import GameHeading from "./components/GameHeading";
 
 export interface GameQuery {
   genre: Genre | null;
@@ -43,20 +44,23 @@ function App() {
         </GridItem>
       </Show>
       <GridItem area="main">
-        <HStack paddingLeft={2} marginBottom={3}>
-          <PlatformSelector
-            selectedPlatform={gameQuery.platform}
-            onSelectPlatform={(platform) =>
-              setGameQuery({ ...gameQuery, platform: platform })
-            }
-          />
-          <OrderBySelector
-            selectedSortOrder={gameQuery.sortOrder}
-            onSelectSortOrder={(sortOrd) =>
-              setGameQuery({ ...gameQuery, sortOrder: sortOrd })
-            }
-          />
-        </HStack>
+        <Box paddingLeft={2}>
+          <GameHeading gameQuery={gameQuery} />
+          <HStack marginBottom={3}>
+            <PlatformSelector
+              selectedPlatform={gameQuery.platform}
+              onSelectPlatform={(platform) =>
+                setGameQuery({ ...gameQuery, platform: platform })
+              }
+            />
+            <SortSelector
+              selectedSortOrder={gameQuery.sortOrder}
+              onSelectSortOrder={(sortOrd) =>
+                setGameQuery({ ...gameQuery, sortOrder: sortOrd })
+              }
+            />
+          </HStack>
+        </Box>
         <GameGrid gameQuery={gameQuery} />
       </GridItem>
     </Grid>
