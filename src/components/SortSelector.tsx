@@ -11,10 +11,7 @@ interface Props {
   selectedSortOrder: SortOrder;
 }
 
-const OrderBySelector = ({
-  onSelectSortOrder: onSelect,
-  selectedSortOrder: selectedSortField,
-}: Props) => {
+const OrderBySelector = ({ onSelectSortOrder, selectedSortOrder }: Props) => {
   const sortOrders: SortOrder[] = [
     { value: "", label: "Relevance" },
     { value: "-added", label: "Date Added" },
@@ -27,13 +24,13 @@ const OrderBySelector = ({
   return (
     <Menu>
       <MenuButton as={Button} rightIcon={<BsChevronDown />}>
-        {selectedSortField
-          ? "Order By: " + selectedSortField.label
+        {selectedSortOrder
+          ? "Order By: " + selectedSortOrder.label
           : "Order By: Relevance"}
       </MenuButton>
       <MenuList>
         {sortOrders.map((order) => (
-          <MenuItem key={order.value} onClick={() => onSelect(order)}>
+          <MenuItem key={order.value} onClick={() => onSelectSortOrder(order)}>
             {order.label}
           </MenuItem>
         ))}
